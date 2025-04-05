@@ -1,6 +1,7 @@
 Enescu Maria - 331CA
 
 # Proiect OpenBook - E-Book Reader
+
 OpenBook este un dispozitiv compact dedicat lecturii digitale. Bazat pe microcontrollerul ESP32-C6, OpenBook dispune de conexiune Wi-Fi integrata.
 Are un ecran de tip e-Paper, cu diagonala de 7.5inch si o baterie de 1800mAh, ce ofera o autonomie extinsa.
 --- 
@@ -51,6 +52,7 @@ Are un ecran de tip e-Paper, cu diagonala de 7.5inch si o baterie de 1800mAh, ce
 ---
 
 ##  Descriere functionalitate hardware
+
 Proiectul foloseste un microcontroller `ESP32-C6-WROOM-1-N8`, care combina BLE 5 si Wi-Fi 6 pentru comunicatii rapide si eficiente.
 Sistemul este alimentat printr-o baterie `Li-Po` de `3.7V` cu capacitatea de `1800mAh` (`Cellevia LP584174`).
 Incarcarea bateriei este realizata folosind modulul `TP4056` conectat prin conector `USB-C`, iar tensiunea constanta de `3.3V` necesara functionarii sistemului este furnizata prin regulatorul `AMS1117`.
@@ -106,9 +108,11 @@ Fiecare componenta are asociat un model 3D realizat(TP-urile, bateria si display
 Componentele 3D realizate au dimensiunile exacte din datasheet-urile furnizate si se pot vizualiza in proiect in `Images/`.
 Ulterior, am amplasat modelul 3D al PCB-ului, bateria si display-ul in carcasa.
 Am adaugat in `Images/` si un video pentru vizualizarea plasarii componentelor 3D pentru E-Book-ului complet.
+
 ---
 
 ###  Probleme intampinate:
+
 - Dupa adaugarea fiecarei componente 3D importate, am observat ca mi-au aparut numeroare erori legate de rutare si diferente de valori
 pe PCB, erori ce inainte de a da `Push to 3D PCB` nu existau. Am incercat dupa ce am adaugat componentele 3D sa refac rutarea.
 -  Am avut probleme cu plasarea componentelor 3D, desi am importat toate componentele 3D, nu toate mi-au aparut in placuta 3D.
