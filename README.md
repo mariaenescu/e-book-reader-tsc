@@ -4,6 +4,7 @@ Enescu Maria - 331CA
 
 OpenBook este un dispozitiv compact dedicat lecturii digitale. Bazat pe microcontrollerul ESP32-C6, OpenBook dispune de conexiune Wi-Fi integrata.
 Are un ecran de tip e-Paper, cu diagonala de 7.5inch si o baterie de 1800mAh, ce ofera o autonomie extinsa.
+
 --- 
 ## Diagrama bloc
 ![Diagrama bloc](/Images/E-Book.drawio.png)
