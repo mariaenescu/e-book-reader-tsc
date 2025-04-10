@@ -6,6 +6,13 @@ OpenBook is a compact device designed for digital reading. Based on the ESP32-C6
 It features a 7.5" e-Paper display and an 1800mAh battery, offering extended battery life.
 
 --- 
+
+## 3D Visualizations
+![P1](/Images/TopDevice.png)
+![P2](/Images/Display.png)
+![P3](/Images/InsideDevice.png)
+
+---
 ## Block Diagram
 ![Diagrama bloc](/Images/E-Book.drawio.png)
 
