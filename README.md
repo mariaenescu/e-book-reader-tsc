@@ -16,6 +16,42 @@ It features a 7.5" e-Paper display and an 1800mAh battery, offering extended bat
 ## Block Diagram
 ![Diagrama bloc](/Images/E-Book.drawio.png)
 
+---
+
+## Main Components Overview
+
+**Microcontroller – ESP32-C6-WROOM-1-N8**  
+Acts as the main processing unit of the system, responsible for wireless communication, power management, and control of all peripherals. It uses SPI, I2C, and GPIO interfaces to interact with external modules.
+
+**E-Paper Display – 7.5” Waveshare**  
+Displays e-book content using ultra-low power. It is controlled via SPI and connected through MOSI, MISO, SCK, CS, DC, RST, and BUSY pins.
+
+**MicroSD Card – 112A-TAAR-R03**  
+Used for storing e-books and data files. Communicates with the ESP32 via the SPI interface and supports FAT32 format up to 32GB.
+
+**NOR Flash Memory – W25Q512JVEIQ**  
+Provides external non-volatile memory for storing firmware or additional data. It connects via SPI and supports fast read/write operations.
+
+**Real-Time Clock – DS3231SN**  
+Ensures accurate timekeeping, even when the device is off. It uses the I2C protocol and provides a 32KHz output and interrupt signal.
+
+**Environmental Sensor – BME688**  
+Measures temperature, humidity, pressure, and gas levels. Communicates via I2C and is powered through a dedicated I2C power pin.
+
+**Battery – Cellevia LP584174 (Li-Po 3.7V, 1800mAh)**  
+Powers the system when disconnected from USB. Provides stable operation and extended autonomy.
+
+**Power Management – MCP73831 & AMS1117**  
+MCP73831 handles Li-Po charging via USB-C. AMS1117 regulates the output voltage to 3.3V required by the ESP32 and peripherals.
+
+**USB-C Connector – USB4110-GF-A**  
+Used for charging the battery and data transfer. Protected by ESD varistor (PFMF.050.1) and Schottky diode for reverse polarity.
+
+**Buttons – Tactile Push Buttons (3x)**  
+Used for boot, reset, and mode change. Connected to GPIOs for user input and state control.
+
+---
+
 ## Bill of Materials
 | Compound                | Purchase                          | Datasheet                                                                                                                                                          |
 |---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
