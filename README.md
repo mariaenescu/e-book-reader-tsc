@@ -1,16 +1,16 @@
 Enescu Maria - 331CA
 
-# Proiect OpenBook - E-Book Reader
+# OpenBook Project - E-Book Reader
 
-OpenBook este un dispozitiv compact dedicat lecturii digitale. Bazat pe microcontrollerul ESP32-C6, OpenBook dispune de conexiune Wi-Fi integrata.
-Are un ecran de tip e-Paper, cu diagonala de 7.5inch si o baterie de 1800mAh, ce ofera o autonomie extinsa.
+OpenBook is a compact device designed for digital reading. Based on the ESP32-C6 microcontroller, OpenBook includes integrated Wi-Fi connectivity.
+It features a 7.5" e-Paper display and an 1800mAh battery, offering extended battery life.
 
 --- 
-## Diagrama bloc
+## Block Diagram
 ![Diagrama bloc](/Images/E-Book.drawio.png)
 
-##  Bill of Materials
-| Componenta                | Achizitionare                                                                                                                                                                                                                                                      | Datasheet                                                                                                                                                          |
+## Bill of Materials
+| Compound                | Purchase                          | Datasheet                                                                                                                                                          |
 |---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Buton                     | [Click here](https://componentsearchengine.com/prices/TSP1C-RA?manufacturer=KNITTER-SWITCH)                                                                                                                                                                        | https://docs.rs-online.com/1fd0/0900766b80e2c247.pdf                                                                                                   |
 | Condensator 100nF         | [Click here](https://ro.mouser.com/ProductDetail/KYOCERA-AVX/04026D104KAT2A?qs=LLG2yGGJ5NhILwMziGI8Xg%3D%3D)                                                                                                                                                       | https://www.mouser.com/catalog/supplier/library/pdf/AVXSurfaceMountCeramic.pdf                                                                         |
@@ -52,21 +52,22 @@ Are un ecran de tip e-Paper, cu diagonala de 7.5inch si o baterie de 1800mAh, ce
 | MAX17048G+T10             | [Click here](https://ro.mouser.com/ProductDetail/Analog-Devices-Maxim-Integrated/MAX17048G%2bT10?qs=D7PJwyCwLAoGnnn8jEPRBQ%3D%3D)                                                                                                                                  | https://ro.mouser.com/datasheet/2/609/MAX17048_MAX17049-3469099.pdf                                                                                    |
 ---
 
-##  Descriere functionalitate hardware
+## Hardware Functionality Description
 
-Proiectul foloseste un microcontroller `ESP32-C6-WROOM-1-N8`, care combina BLE 5 si Wi-Fi 6 pentru comunicatii rapide si eficiente.
-Sistemul este alimentat printr-o baterie `Li-Po` de `3.7V` cu capacitatea de `1800mAh` (`Cellevia LP584174`).
-Incarcarea bateriei este realizata folosind modulul `TP4056` conectat prin conector `USB-C`, iar tensiunea constanta de `3.3V` necesara functionarii sistemului este furnizata prin regulatorul `AMS1117`.
-Microcontroller-ul `ESP32-C6` gestioneaza intregul sistem utilizand interfetele standard SPI, I2C si GPIO, astfel:
-1. `Display-ul e-Paper Waveshare 7.5"` (rezolutie 800x480) conectat prin interfata `SPI`.
-2. `Cardul SD` si `memoria externa NOR Flash` conectate pe magistrala SPI pentru stocarea datelor.
-3. `Ceasul RTC` (`DS3231SN`) si `senzorul de mediu BME688` conectate pe magistrala I2C, oferind masurare si gestionare precisa a timpului real.
-4. `Conexiunile GPIO` permit controlul `RESET` si `BOOT`, iar interfata `Qwiic/Stemma QT` faciliteaza extinderea cu senzori aditionali.
-5. Pentru depanare, exista `Test Pads` dedicate comunicarii UART (`TX/RX`).
+The project uses the `ESP32-C6-WROOM-1-N8` microcontroller, which integrates **BLE 5** and **Wi-Fi 6** for fast and efficient communication.
+The system is powered by a **3.7V Li-Po battery** with a capacity of 1800mAh (`Cellevia LP584174`).
+Battery charging is managed by the `TP4056` module via a `USB-C` connector, and the constant `3.3V` required by the system is provided by an `AMS1117` voltage regulator.
+The `ESP32-C6` microcontroller controls the entire system through standard **SPI**, **I2C**, and **GPIO** interfaces, as follows:
+1. The `7.5" Waveshare e-Paper Display` (800x480 resolution) is connected via SPI.
+2. The `SD Card` and `external NOR Flash` memory are also connected via SPI for data storage.
+3. The `RTC (DS3231SN)` and `environmental sensor (BME688)` are connected via **I2C**, enabling precise real-time measurements.
+4. **GPIO connections** allow control of the `RESET` and `BOOT` functions, and the **Qwiic/Stemma QT** interface supports additional sensor expansion.
+5. For debugging, there are dedicated Test Pads for UART communication (`TX/RX`).
+
 ---
 
 ##  Pinii ESP32-C6
-| Pin ESP32-C6 | GPIO        | Functie            | Conectat la            |
+| Pin ESP32-C6 | GPIO        | Job            | Connected to          |
 |--------------|-------------|--------------------|------------------------|
 | EN           | -           | RESET              | Reset hardware         |
 | IO0          | GPIO0       | INT RTC            | Intrerupere RTC        |
@@ -95,25 +96,27 @@ Microcontroller-ul `ESP32-C6` gestioneaza intregul sistem utilizand interfetele 
 | IO23         | GPIO23      | EPD_RST            | Reset Display          |
 ---
 
-## Implementare proiect:
+## Project Implementation:
       
-`Schematicul` a fost realizat conform pdf-ului cerintei, utilizând simboluri din biblioteca oferita si verificata cu 
-fisierul ERC. Warningurile au fost evitate si erorile ramase au fost acceptate.
-In proiectarea `PCB`-ului am montat componentele exclusiv pe `layer-ul Top`, cu respectarea recomandarile mecanice si dimensionale.
-Atat `antena componentei ESP32`, cat si `butoanerle` au fost decupate din conturul placutei de PCB.
-`Rutarea` a fost facuta prin Autorouter, alegand ponderea de 100% si vias-ul minim.
-Am realizat `planul de masă` pe ambele layere(Bottom si Top).
-`Via stitching-ul` a fost plasat in apropierea componentei ESP32 intr-un spatiu liber, evitand traseele cablurilor de rutare.
-Numele fiecarei componente e marcata cu `TopSilkscreen`.
-Fiecare componenta are asociat un model 3D realizat(TP-urile, bateria si display-ul) sau importat din biblioteci externe.
-Componentele 3D realizate au dimensiunile exacte din datasheet-urile furnizate si se pot vizualiza in proiect in `Images/`.
-Ulterior, am amplasat modelul 3D al PCB-ului, bateria si display-ul in carcasa.
-Am adaugat in `Images/` si un video pentru vizualizarea plasarii componentelor 3D pentru E-Book-ului complet.
+`The schematic` was created according to the requirement PDF, using symbols from the provided library and verified using 
+the `ERC` file. Warnings were avoided, and remaining errors were accepted as non-critical.
+During the `PCB` design phase, all components were placed exclusively on the `Top Layer`, following mechanical and dimensional recommendations.
+Both the `ESP32 antenna area` and the `buttons` were cut out from the PCB outline.
+`Routing` was performed using the Autorouter, with a 100% routing weight and minimum via size.
+A `ground plane` was created on both layers (Bottom and Top).
+`Via stitching` was added near the ESP32 component in a free area, avoiding routing traces.
+Each component name is marked with `TopSilkscreen`.
+Each component has an associated 3D model, either designed (TPs, battery, and display) or imported from external libraries.
+The 3D models were created using exact dimensions from the provided datasheets and can be viewed in the `Images/` folder.
+Later, I positioned the 3D model of the PCB, the battery, and the display inside the case.
+A video has also been added in `Images/` to visualize the 3D placement of all components for the complete E-Book.
 
 ---
 
-###  Probleme intampinate:
+### Issues Encountered:
 
-- Dupa adaugarea fiecarei componente 3D importate, am observat ca mi-au aparut numeroare erori legate de rutare si diferente de valori
-pe PCB, erori ce inainte de a da `Push to 3D PCB` nu existau. Am incercat dupa ce am adaugat componentele 3D sa refac rutarea.
--  Am avut probleme cu plasarea componentelor 3D, desi am importat toate componentele 3D, nu toate mi-au aparut in placuta 3D.
+- After importing each 3D component, I noticed several routing errors and value mismatches appearing on the PCB—
+  errors that did not exist before using `Push to 3D PCB`. After adding the 3D components, I attempted to re-route to fix these issues.
+- I encountered problems with 3D component placement. Although all 3D models were imported, not all of them appeared on the 3D PCB.
+
+---
