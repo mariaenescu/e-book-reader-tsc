@@ -161,5 +161,7 @@ A video has also been added in `Images/` to visualize the 3D placement of all co
 - After importing each 3D component, I noticed several routing errors and value mismatches appearing on the PCB—
   errors that did not exist before using `Push to 3D PCB`. After adding the 3D components, I attempted to re-route to fix these issues.
 - I encountered problems with 3D component placement. Although all 3D models were imported, not all of them appeared on the 3D PCB.
+- In **Fusion 360**, `Push to 3D PCB` sometimes desynchronized component labels and layers. Also, not all components kept their footprints aligned after 3D model imports, requiring manual corrections.
+- I also had to ensure no 90° trace angles were present, per assignment constraints — which was hard to maintain while autorouting.
 
 ---
